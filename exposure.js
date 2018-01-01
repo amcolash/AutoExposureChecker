@@ -121,6 +121,6 @@ function next() {
             });
     } else {
         console.log("Processing images took " + (Date.now() - startTime) / 1000 + " seconds");
-        console.log("Moved " + numMoved + " images to autoExposure/");
+        console.log("Moved " + numMoved + " images to autoExposure/, out of " + files.length + " total files.");
     }
 }
