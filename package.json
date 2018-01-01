@@ -1,0 +1,22 @@
+{
+  "name": "autoexposurechecker",
+  "version": "1.0.0",
+  "description": "Check the (approximate) exposure of a folder of images and move under/over exposed images out",
+  "main": "exposure.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amcolash/AutoExposureChecker.git"
+  },
+  "author": "Andrew McOlash",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amcolash/AutoExposureChecker/issues"
+  },
+  "homepage": "https://github.com/amcolash/AutoExposureChecker#readme",
+  "dependencies": {
+    "imagemagick": "^0.1.3"
+  }
+}
