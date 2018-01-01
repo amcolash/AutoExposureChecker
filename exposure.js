@@ -42,6 +42,7 @@ files = files.sort(function(a, b) {
 // Set up some variables
 var index = -1;
 var regex = new RegExp(/\(\d*.?\d*\)/g);
+var numMoved = 0;
 
 // if we specified a threshold in the arguments, cap it at 0.45
 var threshold = Math.min(0.45, args.length > 2 ? Number.parseFloat(args[2]) : 0.25);
@@ -101,6 +102,8 @@ function next() {
                             }
 
                             fs.renameSync(image, imagePath + "autoExposure/" + file);
+
+                            numMoved++;
                         } else {
                             // No action needed
                             var action = "no action";
@@ -118,5 +121,6 @@ function next() {
             });
     } else {
         console.log("Processing images took " + (Date.now() - startTime) / 1000 + " seconds");
+        console.log("Moved " + numMoved + " images to autoExposure/");
     }
 }
