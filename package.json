@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/amcolash/AutoExposureChecker#readme",
   "dependencies": {
-    "imagemagick": "^0.1.3"
+    "imagemagick": "^0.1.3",
+    "rawly": "^0.3.0"
   }
 }

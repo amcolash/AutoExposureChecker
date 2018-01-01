@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const im = require('imagemagick');
+const Rawly = require('rawly').default;
 
 var args = [];
 
@@ -32,7 +33,7 @@ var files = fs.readdirSync(imagePath);
 // Sort files in order of file name
 files = files.sort(function(a, b) {
     return a.localeCompare(b);
-})
+});
 
 // Set up some variables
 var index = 0;
@@ -48,39 +49,57 @@ function next() {
     // Loop through each file until done
     if (index < files.length) {
         var file = files[index];
+        var image = imagePath + file;
 
-        // run identify command from imagemagick
-        im.identify(imagePath + file, function (err, features) {
-            if (err) throw err;
+        var r = new Rawly(image);
+        r.extractPreview('1200x900') // Scale to more reasonable size and append -preview to the end 
+            .then((extracted) => {
+                // if (extracted) console.log('Extracted a photo...');
+                // if (!extracted) console.log('Skipped this one because a preview was already extracted.');
 
-            // Get the mean value of the image and do some regex magic
-            var mean = features["image statistics"].overall.mean;
-            var value = mean.match(regex);
+                var preview = image.replace("CR2", "jpg");
 
-            if (value.length == 1) {
-                // replace () in the value
-                value = value[0].replace("(", "").replace(")", "");
-                
-                var num = Number.parseFloat(value);
+                // run identify command from imagemagick
+                im.identify(preview, function (err, features) {
+                    if (err) throw err;
 
-                if (num < threshold || num > 1.0 - threshold) {
-                    // If we need to move things
-                    var action = "moving file";
+                    // Delete the preview after info has been obtained
+                    fs.unlinkSync(preview);
 
-                    if (!fs.existsSync(imagePath + "autoExposure")) {
-                        fs.mkdirSync(imagePath + "autoExposure");
+                    // Get the mean value of the image and do some regex magic
+                    var mean = features["image statistics"].overall.mean;
+                    var value = mean.match(regex);
+
+                    if (value.length == 1) {
+                        // replace () in the value
+                        value = value[0].replace("(", "").replace(")", "");
+
+                        var num = Number.parseFloat(value);
+
+                        if (num < threshold || num > 1.0 - threshold) {
+                            // If we need to move things
+                            var action = "moving file";
+
+                            if (!fs.existsSync(imagePath + "autoExposure")) {
+                                fs.mkdirSync(imagePath + "autoExposure");
+                            }
+
+                            fs.renameSync(image, imagePath + "autoExposure/" + file);
+                        } else {
+                            // No action needed
+                            var action = "aok";
+                        }
+                        console.log(file + ", mean value: " + value + ", " + action);
                     }
 
-                    fs.renameSync(imagePath + file, imagePath + "autoExposure/" + file);
-                } else {
-                    // No action needed
-                    var action = "aok";
-                }
-                console.log(file + ", mean value: " + value + ", " + action);
-            }
-
-            index++;
-            next();
-        });
+                    index++;
+                    next();
+                });
+            })
+            .catch((err) => {
+                console.log(err.message);
+                index++;
+                next();
+            });
     }
 }
