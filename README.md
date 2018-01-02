@@ -18,9 +18,9 @@ npm install
 ## Usage
 `exposure.js images_path [--underExposed 0.25] [--overExposed 0.75] [--format .CR2]`
 
-| Argument         | Default | Description                                                                                                                      |
-|------------------|---------|----------------------------------------------------------------------------------------------------------------------------------|
-| `image_path`     | -----   | Required (ex: ~/Photos/test)                                                                                                     |
-| `--underExposed` | 0.25    | Lower bound threshold of the average of the image pixel values (from 0-1.0). Anything below this value will be considered underexposed and moved. |
-| `--overExposed`  | 0.75    | Upper bound threshold of the average of the image pixel values (from 0-1.0). Anything above this value will be considered overexposed and moved.  |
-| `--format`       | CR2     | Image format to process and check                                                                                                |
+| Argument                      | Default | Description                                                                                                       |
+|-------------------------------|---------|-------------------------------------------------------------------------------------------------------------------|
+| <nobr>`image_path`</nobr>     | -----   | Required (ex: ~/Photos/test). |
+| <nobr>`--underExposed`</nobr> | 0.25    | Lower bound threshold of the average of the image pixel values (from 0-1.0). Anything below this value will be considered underexposed and moved. |
+| <nobr>`--overExposed`</nobr>  | 0.75    | Upper bound threshold of the average of the image pixel values (from 0-1.0). Anything above this value will be considered overexposed and moved. |
+| <nobr>`--format`</nobr>       | CR2     | Image format to process and check. |
