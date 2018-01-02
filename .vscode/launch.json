@@ -1,0 +1,52 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/exposure.js",
+            "args": [
+                "/home/andrew/Desktop/test/December25/"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test Threshold",
+            "program": "${workspaceFolder}/exposure.js",
+            "args": [
+                "/home/andrew/Desktop/test/December25/",
+                "--threshold",
+                "0.35"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test Format",
+            "program": "${workspaceFolder}/exposure.js",
+            "args": [
+                "/home/andrew/Desktop/test/December25/",
+                "--format",
+                "jpg",
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test Args",
+            "program": "${workspaceFolder}/exposure.js",
+            "args": [
+                "/home/andrew/Desktop/test/December25/",
+                "--format",
+                "jpg",
+                "--threshold",
+                "0.35"
+            ]
+        }
+    ]
+}
