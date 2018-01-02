@@ -5,7 +5,8 @@ const im = require('imagemagick');
 const Rawly = require('rawly').default;
 
 var imageFormat = ".CR2";
-var threshold = 0.25;
+var underExposed = 0.25;
+var overExposed = 1 - underExposed;
 
 var args = [];
 
@@ -18,7 +19,7 @@ for (var i = 0; i < process.argv.length; i++) {
 }
 
 function usage() {
-    console.error("usage: exposure.js images_path [--threshold  0.25] [--format .CR2]");
+    console.error("usage: exposure.js images_path [--underExposed 0.25] [--overExposed 0.75] [--format .CR2]");
     process.exit(1);
 }
 
@@ -40,9 +41,17 @@ if (!imagePath.endsWith("/")) {
 if (args.length > 2) {
     for (var i = 2; i < args.length; i++) {
         switch(args[i]) {
-            case "--threshold":
+            case "--underExposed":
                 if (args.length > i) {
-                    threshold = Math.min(0.45, Number.parseFloat(args[i + 1]));
+                    underExposed = Number.parseFloat(args[i + 1]);
+                    i++;
+                } else {
+                    usage();
+                }
+                break;
+            case "--overExposed":
+                if (args.length > i) {
+                    overExposed = Number.parseFloat(args[i + 1]);
                     i++;
                 } else {
                     usage();
@@ -85,7 +94,7 @@ var regex = new RegExp(/\(\d*.?\d*\)/g);
 var numMoved = 0;
 
 // if we specified a threshold in the arguments, cap it at 0.45
-console.log("Checking " + files.length + " " + imageFormat + " files with a threshold of " + threshold);
+console.log("Checking " + files.length + " " + imageFormat + " files with a threshold of [" + underExposed + " - " + overExposed + "]");
 
 // Kick off the read process
 next();
@@ -107,14 +116,14 @@ function next() {
 
                     var preview = image.replace(imageFormat, "-preview.jpg");
 
-                    identify(preview);
+                    identify(preview, image, file);
                 })
                 .catch((err) => {
                     console.error(err.message);
                     next();
                 });
         } else {
-            identify(image);
+            identify(image, image, file);
         }
     } else {
         console.log("Processing images took " + (Date.now() - startTime) / 1000 + " seconds");
@@ -122,9 +131,9 @@ function next() {
     }
 }
 
-function identify(file) {
+function identify(preview, image, file) {
     // run identify command from imagemagick
-    im.identify(file, function (err, features) {
+    im.identify(preview, function (err, features) {
         if (err) {
             console.error(err);
             next();
@@ -132,8 +141,8 @@ function identify(file) {
         };
 
         // Delete the preview after info has been obtained
-        if (file.endsWith("-preview.jpg")) {
-            fs.unlinkSync(file);
+        if (preview.endsWith("-preview.jpg")) {
+            fs.unlinkSync(preview);
         }
 
         // Get the mean value of the image and do some regex magic
@@ -146,7 +155,7 @@ function identify(file) {
 
             var num = Number.parseFloat(value);
 
-            if (num < threshold || num > 1.0 - threshold) {
+            if (num < underExposed || num > overExposed) {
                 // If we need to move things
                 var action = "moved to autoExposure/";
 

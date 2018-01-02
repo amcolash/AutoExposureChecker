@@ -16,12 +16,23 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Test Threshold",
+            "name": "Test Under Exposed",
             "program": "${workspaceFolder}/exposure.js",
             "args": [
                 "/home/andrew/Desktop/test/December25/",
-                "--threshold",
+                "--underExposed",
                 "0.35"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test Over Exposed",
+            "program": "${workspaceFolder}/exposure.js",
+            "args": [
+                "/home/andrew/Desktop/test/December25/",
+                "--overExposed",
+                "0.65"
             ]
         },
         {
@@ -44,8 +55,10 @@
                 "/home/andrew/Desktop/test/December25/",
                 "--format",
                 "jpg",
-                "--threshold",
-                "0.35"
+                "--underExposed",
+                "0.35",
+                "--overExposed",
+                "0.65"
             ]
         }
     ]
