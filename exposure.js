@@ -13,7 +13,7 @@ var args = [];
 // Parse out the node path from the args (if supplied)
 for (var i = 0; i < process.argv.length; i++) {
     var arg = process.argv[i];
-    if (!arg.includes("/node")) {
+    if (!arg.includes("/node") && !arg.includes("\\node")) {
         args.push(arg);
     }
 }
