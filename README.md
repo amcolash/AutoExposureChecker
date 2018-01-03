@@ -18,7 +18,7 @@ Let's open up a terminal and get things rolling! If you have never used a termin
 
 ``` bash
 $ git clone https://github.com/amcolash/AutoExposureChecker
-$ cd ~/location_cloned_or_extracted/AutoExposureChecker
+$ cd AutoExposureChecker
 $ npm install
 ```
 
