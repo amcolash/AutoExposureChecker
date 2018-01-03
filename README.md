@@ -3,6 +3,8 @@ This is a simple tool that I made for myself to make the process of weeding thro
 
 This tool will allow you to scan a folder of images and move the ones that you would normally weed out into a different place.
 
+If you have never used a terminal/cmd line, I am sorry but no gui is planned for this tool - but now is a great time to learn (it is super easy to use).
+
 I have tested this tool on linux (ubuntu 16.04) and should work on all *nix/osx distros without a hiccup. I have not and will not be testing on windows. If you run into errors, send along the log to the [issue tracker](https://github.com/amcolash/AutoExposureChecker/issues) and maybe we can figure it out!
 
 > You use this tool at YOUR OWN RISK. I have tested it and it works for my needs, but as with anything that can manipulate your precious photos - make a backup just in case. It _should not_ delete anything, and only moves things around, but better safe than sorry. Cheers!
