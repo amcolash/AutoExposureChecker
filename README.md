@@ -16,7 +16,7 @@ To run this tool, you will need a few things first:
 - [exiftool](https://www.sno.phy.queensu.ca/~phil/exiftool/)
 
 ## Clone the tool repo and set things up
-Let's open up a terminal and get things rolling! If you have never used a terminal/cmd line, I am sorry but no gui is planned for this tool.
+Let's open up a terminal and get things rolling!
 
 ``` bash
 $ git clone https://github.com/amcolash/AutoExposureChecker
