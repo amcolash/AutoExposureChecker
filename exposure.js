@@ -42,6 +42,7 @@ if (args.length > 2) {
     for (var i = 2; i < args.length; i++) {
         switch(args[i]) {
             case "--underExposed":
+            case "-u":
                 if (args.length > i) {
                     underExposed = Number.parseFloat(args[i + 1]);
                     i++;
@@ -50,6 +51,7 @@ if (args.length > 2) {
                 }
                 break;
             case "--overExposed":
+            case "-o":
                 if (args.length > i) {
                     overExposed = Number.parseFloat(args[i + 1]);
                     i++;
@@ -58,6 +60,7 @@ if (args.length > 2) {
                 }
                 break;
             case "--format":
+            case "-f":
                 if (args.length > i) {
                     imageFormat = args[i + 1];
                     if (!imageFormat.startsWith(".")) imageFormat = "." + imageFormat;
