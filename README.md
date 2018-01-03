@@ -20,10 +20,18 @@ npm install
 
 ```
 required arguments:
-    image_path              Path of the folder to scan, ex: ~/Photos/test. Note: this tool does not recursively scan folders and I don't think it should (for image safety).
+    image_path              Path of the folder to scan, ex: ~/Photos/test.
+                            Note: this tool does not recursively scan folders and I don't think it should (for image safety).
 
 optional arguments:
-    --underExposed, -u      Lower bound threshold of the average pixel value of the image (from 0-1.0). Anything below this value will be considered underexposed and moved. (Default: 0.25)
-    --overExposed, -o       Upper bound threshold of the average pixel value of the image (from 0-1.0). Anything above this value will be considered overexposed and moved. (Default: 0.75)
-    --format, -f            Image format that the tool will process and check. (Default: .CR2)
+    --underExposed, -u      Lower bound threshold of the average pixel value of the image (from 0-1.0).
+                            Anything below this value will be considered underexposed and moved.
+                            (Default: 0.25)
+
+    --overExposed, -o       Upper bound threshold of the average pixel value of the image (from 0-1.0).
+                            Anything above this value will be considered overexposed and moved.
+                            (Default: 0.75)
+
+    --format, -f            Image format that the tool will process and check.
+                            (Default: .CR2)
 ```
