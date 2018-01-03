@@ -19,7 +19,7 @@ for (var i = 0; i < process.argv.length; i++) {
 }
 
 function usage() {
-    console.error("usage: exposure.js images_path [--underExposed 0.25] [--overExposed 0.75] [--format .CR2]");
+    console.error("usage: exposure.js images_path [--underExposed, -u 0.25] [--overExposed, -o 0.75] [--format, -f .CR2]");
     process.exit(1);
 }
 
