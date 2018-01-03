@@ -5,7 +5,7 @@ This tool will allow you to scan a folder of images and move the ones that you w
 
 If you have never used a terminal/cmd line, I am sorry but no gui is planned for this tool - but now is a great time to learn (it is super easy to use).
 
-I have tested this tool on linux (ubuntu 16.04) and should work on all *nix/osx distros without a hiccup. I have not and will not be testing on windows. If you run into errors, send along the log to the [issue tracker](https://github.com/amcolash/AutoExposureChecker/issues) and maybe we can figure it out!
+I have tested this tool on linux (ubuntu 16.04) and should work on all *nix/osx distros without a hiccup (assuming all prereqs are installed). I have only briefly tested this with cygwin on windows (working), but am not focused on windows development. If you run into errors, send along the logs to the [issue tracker](https://github.com/amcolash/AutoExposureChecker/issues) and maybe we can figure it out!
 
 > You use this tool at YOUR OWN RISK. I have tested it and it works for my needs, but as with anything that can manipulate your precious photos - make a backup just in case. It _should not_ delete anything, and only moves things around, but better safe than sorry. Cheers!
 
@@ -21,6 +21,7 @@ Let's open up a terminal and get things rolling!
 ``` bash
 $ git clone https://github.com/amcolash/AutoExposureChecker
 $ cd AutoExposureChecker
+--> Windows only (admin)! $ npm install --global --production windows-build-tools
 $ npm install
 ```
 
