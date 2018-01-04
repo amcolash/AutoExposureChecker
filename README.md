@@ -32,7 +32,7 @@ $ npm install
 
 ```
 required arguments:
-    image_path              Path of the folder to scan, ex: ~/Photos/test.
+    image_path              Path of the folder to scan, ex: ~/Photos/test, C:/test/December25 (windows use forward slashes and caps on drive).
                             Note: this tool does not recursively scan folders and I don't think it should (for image safety).
 
 optional arguments:
