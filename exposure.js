@@ -174,7 +174,9 @@ function identify(preview, image, file) {
                 var action = "no action";
             }
 
-            console.log("checked file: " + file + ", mean value: " + value + ", " + action);
+            var percent = Math.ceil(index / files.length * 100);
+            if (percent < 10) percent = "0" + percent;
+            console.log("(" + percent + "%) checked file: " + file + ", mean value: " + value.toFixed(5) + ", " + action);
         }
 
         next();
