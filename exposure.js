@@ -110,9 +110,9 @@ function next() {
         var file = files[index];
         var image = imagePath + file;
 
-        if (!image.endsWith(".jpg")) {
+        if (!image.endsWith(".jpg") && !image.endsWith(".png")) {
             var r = new Rawly(image);
-            r.extractPreview('1200x900', '-preview') // Scale to more reasonable size and append -preview to the end 
+            r.extractPreview('1200x900', '-preview') // Scale to more reasonable size and append -preview to the end
                 .then((extracted) => {
                     // if (extracted) console.log('Extracted a photo...');
                     // if (!extracted) console.log('Skipped this one because a preview was already extracted.');
@@ -176,7 +176,7 @@ function identify(preview, image, file) {
 
             var percent = Math.ceil(index / files.length * 100);
             if (percent < 10) percent = "0" + percent;
-            console.log("(" + percent + "%) checked file: " + file + ", mean value: " + value.toFixed(5) + ", " + action);
+            console.log("(" + percent + "%) checked file: " + file + ", mean value: " + num.toFixed(5) + ", " + action);
         }
 
         next();
